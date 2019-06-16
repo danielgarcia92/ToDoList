@@ -1,20 +1,18 @@
 <template>
    <div id="app" class="container">
-      <div class="w-50 p-3 mx-auto">
 
-         <h3 class="pb-3 pt-3">Lista de tareas</h3>
-         <app-task-list :tasks="tasks"></app-task-list>
+      <h3 class="pb-3 pt-3">Lista de tareas</h3>
+      <app-task-list :tasks="tasks"></app-task-list>
 
-         <p><a @click="deleteCompleted">Eliminar tareas completadas</a></p>
+      <p><a @click="deleteCompleted">Eliminar tareas completadas</a></p>
 
-         <h3>Crear Tarea</h3>
-         <app-task-form @created="createTask"></app-task-form>
+      <h3>Crear Tarea</h3>
+      <app-task-form @created="createTask"></app-task-form>
 
-         <footer class="footer">
-            <p>&copy Daniel García</p>
-         </footer>
+      <footer class="footer">
+         <p>&copy Daniel García</p>
+      </footer>
 
-      </div>
    </div>
 </template>
 

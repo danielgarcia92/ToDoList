@@ -1,5 +1,10 @@
 var path = require('path')
 var webpack = require('webpack')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var glob = require('glob')
+var PurifyCSSPlugin = require('purifycss-webpack')
+
+var inProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   entry: './src/main.js',
@@ -38,19 +43,14 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           loaders: {
-            // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
-            // the "scss" and "sass" values for the lang attribute to the right configs here.
-            // other preprocessors should work out of the box, no loader config like this necessary.
-            'scss': [
-              'vue-style-loader',
-              'css-loader',
-              'sass-loader'
-            ],
-            'sass': [
-              'vue-style-loader',
-              'css-loader',
-              'sass-loader?indentedSyntax'
-            ]
+            'scss': ExtractTextPlugin.extract({
+              use: 'css-loader!sass-loader',
+              fallback: 'vue-style-loader'
+            })
+          },
+          cssModules: {
+            localIdentName: '_module_[hash:base64]',
+            camelCase: true
           }
           // other vue-loader options go here
         }
@@ -69,6 +69,16 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new ExtractTextPlugin("style.css"),
+    new PurifyCSSPlugin({
+      paths: glob.sync(path.join(__dirname, 'src/*.vue')),
+      purifyOptions: {
+        minify: inProduction,
+        whitelist: ['*_module_*']
+      }
+    })
+  ],
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
@@ -86,7 +96,7 @@ module.exports = {
   devtool: '#eval-source-map'
 }
 
-if (process.env.NODE_ENV === 'production') {
+if (inProduction) {
   module.exports.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
