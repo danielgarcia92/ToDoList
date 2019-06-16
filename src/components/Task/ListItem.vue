@@ -2,7 +2,7 @@
   <li class="list-group-item task-list-item"
       :class="{editing: editing, completed: !task.pending}">
       <a @click="toggleStatus">
-        <app-icon :img="task.pending ? 'unchecked' : 'check'"></app-icon>
+        <icon :img="task.pending ? 'unchecked' : 'check'"></icon>
       </a>
 
     <template v-if="!editing">
@@ -12,10 +12,10 @@
 
       <div>
         <a @click="edit">
-          <app-icon img="edit"></app-icon>
+          <icon img="edit"></icon>
         </a>
         <a @click="remove">
-          <app-icon img="trash"></app-icon>
+          <icon img="trash"></icon>
         </a>
       </div>
     </template>
@@ -24,10 +24,10 @@
       <input v-model="draft" type="text"/>
       <div>
         <a @click="update">
-          <app-icon img="ok"></app-icon>
+          <icon img="ok"></icon>
         </a>
         <a @click="discard">
-          <app-icon img="remove"></app-icon>
+          <icon img="remove"></icon>
         </a>
       </div>
     </template>
@@ -35,17 +35,15 @@
 </template>
 
 <script>
-  import Icon from './Icon.vue'
-  import EventBus from './event-bus.js'
+  import Icon from 'components/Icon.vue'
 
   export default {
-    template: '#task-template',
     props: [
       'task',
       'index'
     ],
     components: {
-      'app-icon': Icon
+      'icon': Icon
     },
     data() {
       return {

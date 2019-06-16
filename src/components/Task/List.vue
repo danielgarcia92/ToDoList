@@ -1,21 +1,21 @@
 <template>
   <ul class="list-group task-list">
-    <app-task
+    <list-item
       v-for="(task, index) in tasks"
       :key="task.id"
       :task="task"
       :index="index"
       @remove="deleteTask"
-    ></app-task>
+    ></list-item>
   </ul>
 </template>
 
 <script>
-  import Task from './Task.vue'
+  import ListItem from './ListItem.vue'
 
   export default {
     components: {
-      'app-task': Task
+      'list-item': ListItem
     },
     props: [
       'tasks'
@@ -31,14 +31,6 @@
 <style lang="scss">
   .task-list{
     margin-bottom: 40px;
-  }
-</style>
-
-<style lang="scss" module>
-  @import "sass/variables";
-
-  .subtitle {
-    color: $error-color;
   }
 </style>
 

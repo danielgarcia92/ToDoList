@@ -72,7 +72,7 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin("style.css"),
     new PurifyCSSPlugin({
-      paths: glob.sync(path.join(__dirname, 'src/*.vue')),
+      paths: glob.sync(path.join(__dirname, 'src/**/*.vue')),
       purifyOptions: {
         minify: inProduction,
         whitelist: ['*_module_*']
@@ -80,6 +80,7 @@ module.exports = {
     })
   ],
   resolve: {
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
     },
