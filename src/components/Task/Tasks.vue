@@ -1,7 +1,7 @@
 <template>
    <div>
       <h3 class="pb-3 pt-3">Lista de tareas</h3>
-      <task-list></task-list>
+      <task-list :tasks="tasks"></task-list>
 
       <p><a @click="deleteCompleted">Eliminar tareas completadas</a></p>
 
