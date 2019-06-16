@@ -123,21 +123,5 @@
     }
   }
 
-  /*.completed {
-    background: #c6c8ca;
-    color: #dee2e6;
-    text-decoration: line-through;
-  }
-
-  .editTask {
-    border-color: rgb(0,123,255,0.2);
-  }
-
-  .editing {
-    color: #007bff;
-    -webkit-box-shadow: 3px -3px 4px -2px rgba(0,0,0,0.54);
-    -moz-box-shadow: 3px -3px 4px -2px rgba(0,0,0,0.54);
-    box-shadow: 3px -3px 4px -2px rgba(0,0,0,0.54);
-  }*/
 </style>
 

@@ -1,5 +1,5 @@
 <template>
-  <table class="table table-borderless">
+  <ul class="list-group task-list">
     <app-task
       v-for="(task, index) in tasks"
       :key="task.id"
@@ -7,7 +7,7 @@
       :index="index"
       @remove="deleteTask"
     ></app-task>
-  </table>
+  </ul>
 </template>
 
 <script>
