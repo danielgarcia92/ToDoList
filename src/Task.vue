@@ -1,49 +1,37 @@
 <template>
-  <tr class="list-group-item" :class="{editing: editing, completed: !task.pending}">
-    <td>
+  <li class="list-group-item task-list-item"
+      :class="{editing: editing, completed: !task.pending}">
       <a @click="toggleStatus">
-        <i :class="task.pending ? 'far fa-square' : 'fas fa-check-square'"></i>
+        <app-icon :img="task.pending ? 'unchecked' : 'check'"></app-icon>
       </a>
-    </td>
 
     <template v-if="!editing">
-      <td class="col">
-        <span class="description">
-          {{ task.description }}
-        </span>
-      </td>
-      <td>
+      <span class="description">
+        {{ task.description }}
+      </span>
+
+      <div>
         <a @click="edit">
           <app-icon img="edit"></app-icon>
         </a>
-      </td>
-      <td>
         <a @click="remove">
-          <app-icon img="trash-alt"></app-icon>
+          <app-icon img="trash"></app-icon>
         </a>
-      </td>
+      </div>
     </template>
 
     <template v-else>
-      <td class="col">
-        <input
-          v-model="draft"
-          type="text"
-          class="form-control editTask"
-        />
-      </td>
-      <td>
+      <input v-model="draft" type="text"/>
+      <div>
         <a @click="update">
-          <app-icon img="check"></app-icon>
+          <app-icon img="ok"></app-icon>
         </a>
-      </td>
-      <td>
         <a @click="discard">
-          <app-icon img="times-circle"></app-icon>
+          <app-icon img="remove"></app-icon>
         </a>
-      </td>
+      </div>
     </template>
-  </tr>
+  </li>
 </template>
 
 <script>
@@ -97,4 +85,59 @@
     }
   }
 </script>
+
+<style lang="scss">
+  .task-list-item {
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      text-decoration: none;
+    }
+
+    &.editing {
+      box-shadow: inset 0 0 5px #999999;
+    }
+
+    input, .description {
+      flex: 1;
+      padding: 0 5px;
+    }
+
+    input {
+      border: 0;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &.completed {
+      &, a {
+        color: #999999;
+      }
+
+      .description {
+        text-decoration: line-through;
+      }
+    }
+  }
+
+  /*.completed {
+    background: #c6c8ca;
+    color: #dee2e6;
+    text-decoration: line-through;
+  }
+
+  .editTask {
+    border-color: rgb(0,123,255,0.2);
+  }
+
+  .editing {
+    color: #007bff;
+    -webkit-box-shadow: 3px -3px 4px -2px rgba(0,0,0,0.54);
+    -moz-box-shadow: 3px -3px 4px -2px rgba(0,0,0,0.54);
+    box-shadow: 3px -3px 4px -2px rgba(0,0,0,0.54);
+  }*/
+</style>
 

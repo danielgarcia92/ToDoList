@@ -1,5 +1,5 @@
 <template>
-  <i :class="cssClasses"></i>
+  <span :class="cssClasses" aria-hidden="true"></span>
 </template>
 
 <script>
@@ -7,7 +7,7 @@
     props: ['img'],
     computed: {
       cssClasses() {
-        return 'fas fa-' + this.img;
+        return 'glyphicon glyphicon-' + this.img;
       }
     }
   }
