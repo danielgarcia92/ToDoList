@@ -28,3 +28,18 @@
   }
 </script>
 
+<style lang="scss">
+  .task-list{
+    margin-bottom: 40px;
+  }
+</style>
+
+<style lang="scss" module>
+  @import "sass/variables";
+
+  .subtitle {
+    color: $error-color;
+  }
+</style>
+
+
