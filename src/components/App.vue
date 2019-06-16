@@ -2,12 +2,6 @@
    <div id="app" class="container">
       <h1>Curso de Vue</h1>
 
-      <!--<ul class="nav nav-tabs">
-         <li role="presentation" class="active"><a href="#">Home</a></li>
-         <li role="presentation"><a href="#">Profile</a></li>
-         <li role="presentation"><a href="#">Messages</a></li>
-      </ul>-->
-
       <ul class="nav nav-tabs">
          <router-link tag="li" to="/" active-class="active" exact><a>DashBoard</a></router-link>
          <router-link tag="li" to="/tasks" active-class="active"><a>Tareas</a></router-link>
