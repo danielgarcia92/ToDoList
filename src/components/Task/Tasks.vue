@@ -11,6 +11,7 @@
 </template>
 
 <script>
+   import Store from 'store'
    import List from './List'
    import Form from './CreateForm'
 
@@ -21,20 +22,7 @@
       },
       data() {
          return {
-            tasks: [
-               {
-                  description: "Cepillarse",
-                  pending: true
-               },
-               {
-                  description: "Echarse un sueñito",
-                  pending: true
-               },
-               {
-                  description: "Ponerse a estudiar",
-                  pending: true
-               }
-            ]
+            tasks: Store.state.tasks   // Para luego usar Vuex
          };
       },
       methods: {
@@ -47,11 +35,6 @@
          deleteCompleted() {
             this.tasks = this.tasks.filter(task => task.pending);
          }
-      },
-      created() {
-         this.tasks.forEach((task, index) => {
-            this.$set(task, "id", index + 1)
-         });
       }
    }
 </script>

@@ -22,7 +22,7 @@
          },
          create() {
             this.$emit('created', {
-               description: this.draft,
+               title: this.draft,
                pending: true,
                editing: false
             });

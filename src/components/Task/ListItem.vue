@@ -5,7 +5,7 @@
          <icon :img="task.pending ? 'unchecked' : 'check'"></icon>
       </a>
 
-      <span class="description">{{ task.description }}</span>
+      <span class="description">{{ task.title }}</span>
    </li>
 
 </template>
