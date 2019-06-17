@@ -2,7 +2,6 @@ import Vue from 'vue'
 import router from 'router'
 import EventBus from 'event-bus'
 import App from './components/App'
-import Icon from './components/Icon'
 
 window.EventBus = EventBus
 
@@ -16,7 +15,11 @@ window.not_found_unless = function (condition) {
       not_found()
 };
 
-Vue.component('app-icon', Icon);
+window.clone = function (obj) {
+   return JSON.parse(JSON.stringify(obj));
+};
+
+Vue.component('app-icon', require('./components/Icon.vue').default);
 
 const vm = new Vue({
    el: '#app',

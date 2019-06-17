@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import TaskEdit from 'components/Task/Edit'
 import TaskList from 'components/Task/List'
 import DashBoard from 'components/Dashboard'
 import TaskCreate from 'components/Task/Create'
@@ -37,6 +38,12 @@ const router = new Router({
                path: 'create',
                name: 'tasks.create',
                component: TaskCreate
+            },
+            {
+               path: ':id/edit',
+               name: 'tasks.edit',
+               component: TaskEdit,
+               props: true
             }
          ]
       },

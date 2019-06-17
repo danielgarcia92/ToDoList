@@ -37,7 +37,7 @@
       },
       methods: {
          deleteCompleted() {
-            this.tasks = this.tasks.filter(task => task.pending);
+            Store.deleteCompleted();
          }
       }
    }
