@@ -1,6 +1,6 @@
 <template>
    <li @click="select" class="list-group-item task-list-item"
-       :class="{completed: !task.pending}">
+       :class="{active: isActive, completed: !task.pending}">
       <a @click.stop="toggleStatus">
          <icon :img="task.pending ? 'unchecked' : 'check'"></icon>
       </a>
@@ -14,26 +14,30 @@
    import Icon from 'components/Icon.vue'
 
    export default {
-      props: [
-         'task',
-         'index'
-      ],
+      props: ['task'],
       components: {
          'icon': Icon
-      },
-      data() {
-         return {
-            draft: ''
-         }
       },
       methods: {
          select() {
             //$router -> Representa componente de rutas en general.  $route -> ruta actual
             //En /tasks/:id se recibe así -> this.$route.params.id
-            this.$router.push('/tasks/' + this.task.id)
+            this.$router.push(
+               this.isActive ? '/tasks' : '/tasks/' + this.task.id
+            )
          },
          toggleStatus() {
             this.task.pending = !this.task.pending;
+         }
+      },
+      computed: {
+         isActive() {
+            return this.task.id == this.$route.params.id
+         }
+      },
+      data() {
+         return {
+            draft: ''
          }
       }
    }
@@ -67,6 +71,10 @@
          .description {
             text-decoration: line-through;
          }
+      }
+
+      &.active a {
+         color: white;
       }
    }
 

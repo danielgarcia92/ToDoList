@@ -1,12 +1,16 @@
 <template>
-   <div>
-      <h3 class="pb-3 pt-3">Lista de tareas</h3>
-      <task-list :tasks="tasks"></task-list>
+   <div class="row">
+      <div class="col-xs-6 col-md-6">
+         <h3 class="pb-3 pt-3">Lista de tareas</h3>
+         <task-list :tasks="tasks"></task-list>
+         <p><a @click="deleteCompleted">Eliminar tareas completadas</a></p>
+      </div>
+      <div class="col-xs-6 col-md-6">
+         <router-view></router-view>
+      </div>
 
-      <p><a @click="deleteCompleted">Eliminar tareas completadas</a></p>
-
-      <h3>Crear Tarea</h3>
-      <task-form @created="createTask"></task-form>
+<!--      <h3>Crear Tarea</h3>-->
+<!--      <task-form @created="createTask"></task-form>-->
    </div>
 </template>
 
