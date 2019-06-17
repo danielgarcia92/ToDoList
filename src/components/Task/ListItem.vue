@@ -22,9 +22,11 @@
          select() {
             //$router -> Representa componente de rutas en general.  $route -> ruta actual
             //En /tasks/:id se recibe así -> this.$route.params.id
-            this.$router.push(
-               this.isActive ? '/tasks' : '/tasks/' + this.task.id
-            )
+            let route = this.isActive
+               ? {name: 'tasks'}
+               : {name: 'task.details', params: {id: this.task.id}};
+
+            this.$router.push(route)
          },
          toggleStatus() {
             this.task.pending = !this.task.pending;
