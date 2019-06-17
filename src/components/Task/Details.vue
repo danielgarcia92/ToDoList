@@ -1,5 +1,5 @@
 <template>
-   <div>
+   <div v-if="task">
       <h3>{{ task.title }}</h3>
       <p>{{ task.description }}</p>
    </div>
@@ -11,9 +11,9 @@
    export default {
       props: ['id'],
       data() {
-        return {
-           task: null
-        }
+         return {
+            task: null
+         }
       },
       created() {
          this.findTask()
@@ -24,6 +24,8 @@
       methods: {
          findTask() {
             this.task = Store.findTask(this.id);
+
+            not_found_unless(this.task)
          }
       }
    }
