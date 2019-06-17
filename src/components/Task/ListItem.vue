@@ -2,7 +2,7 @@
    <li @click="select" class="list-group-item task-list-item"
        :class="{active: isActive, completed: !task.pending}">
       <a @click.stop="toggleStatus">
-         <icon :img="task.pending ? 'unchecked' : 'check'"></icon>
+         <app-icon :img="task.pending ? 'unchecked' : 'check'"></app-icon>
       </a>
 
       <span class="description">{{ task.title }}</span>
@@ -11,13 +11,10 @@
 </template>
 
 <script>
-   import Icon from 'components/Icon.vue'
+   import Store from 'store'
 
    export default {
       props: ['task'],
-      components: {
-         'icon': Icon
-      },
       methods: {
          select() {
             //$router -> Representa componente de rutas en general.  $route -> ruta actual
@@ -29,7 +26,7 @@
             this.$router.push(route)
          },
          toggleStatus() {
-            this.task.pending = !this.task.pending;
+            Store.toggleTask(this.task);
          }
       },
       computed: {
@@ -75,10 +72,11 @@
          }
       }
 
-      &.active a {
+      &.active, &.active a {
          color: white;
       }
    }
 
 </style>
+
 
