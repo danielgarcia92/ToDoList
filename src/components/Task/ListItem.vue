@@ -17,8 +17,6 @@
       props: ['task'],
       methods: {
          select() {
-            //$router -> Representa componente de rutas en general.  $route -> ruta actual
-            //En /tasks/:id se recibe así -> this.$route.params.id
             let route = this.isActive
                ? {name: 'tasks'}
                : {name: 'task.details', params: {id: this.task.id}};
