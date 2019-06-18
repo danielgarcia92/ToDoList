@@ -30,14 +30,12 @@
       components: {
          'task-item': ListItem
       },
-      data() {
-         return {
-            tasks: Store.state.tasks   // Para luego usar Vuex
-         };
+      computed: {
+         tasks: () => Store.state.tasks
       },
       methods: {
          deleteCompleted() {
-            Store.deleteCompleted();
+            Store.deleteCompletedTasks();
          }
       }
    }

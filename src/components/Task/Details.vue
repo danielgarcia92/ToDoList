@@ -22,18 +22,12 @@
 
    export default {
       props: ['id'],
-      created() {
-         this.findTask()
-      },
-      watch: {
-         id: 'findTask'
+      computed: {
+        task() {
+           return Store.findTask(this.id)
+        }
       },
       methods: {
-         findTask() {
-            this.task = Store.findTask(this.id);
-
-            not_found_unless(this.task)
-         },
          toggleTask() {
             Store.toggleTask(this.task)
          },
@@ -48,12 +42,7 @@
 
             this.$router.replace({name: 'tasks'})
          }
-      },
-      data() {
-         return {
-            task: null
-         }
-      },
+      }
    }
 </script>
 

@@ -1,9 +1,6 @@
 import Vue from 'vue'
 import router from 'router'
-import EventBus from 'event-bus'
 import App from './components/App'
-
-window.EventBus = EventBus
 
 window.not_found = function () {
    console.log('Not found: ' + router.currentRoute.fullPath)

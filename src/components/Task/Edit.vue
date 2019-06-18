@@ -4,10 +4,12 @@
 
    export default {
       props: ['id'],
+      computed: {
+         task() {
+            return Store.findTask(this.id)
+         }
+      },
       render(createElement) {
-         if (!this.task)
-            return createElement('h3', 'Cargando ...');
-
          return createElement(Form, {
             props: {
                task: this.task,
@@ -25,26 +27,6 @@
                }
             }
          });
-      },
-      created() {
-         this.findTask()
-      },
-      watch: {
-         id: 'findTask'
-      },
-      methods: {
-         findTask() {
-            setTimeout(() => {
-               this.task = clone(Store.findTask(this.id));
-
-               not_found_unless(this.task)
-            },2000);
-         }
-      },
-      data() {
-         return {
-            task: null
-         }
       }
    }
 

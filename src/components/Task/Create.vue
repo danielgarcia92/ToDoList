@@ -4,22 +4,15 @@
 
    export default {
       render(createElement) {
-         let task = {
-            id: '',
-            title: '',
-            description: '',
-            pending: true
-         };
-
          return createElement(Form, {
             props: {
-               task: task,
+               task: {},
                title: 'Nueva Tarea',
                action: 'Crear Tarea'
             },
             on: {
-               save: (newTask) => {
-                  Store.createTask(newTask);
+               save: (draft) => {
+                  let newTask = Store.createTask(draft);
 
                   this.$router.push({
                      name: 'task.details',

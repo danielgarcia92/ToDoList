@@ -5,22 +5,23 @@
          <div class="form-group">
             <label for="title">Título</label>
             <input
-                    v-model="draft.title"
-                    type="text"
-                    class="form-control"
                     id="title"
+                    type="text"
+                    autocomplete="off"
+                    class="form-control"
                     placeholder="Título"
+                    v-model="draft.title"
             />
          </div>
          <div class="form-group">
             <label for="description">Descripción</label>
             <textarea
-                    v-model="draft.description"
-                    class="form-control"
-                    id="description"
-                    cols="30"
                     rows="6"
+                    cols="30"
+                    id="description"
+                    class="form-control"
                     placeholder="Descripción"
+                    v-model="draft.description"
             ></textarea>
          </div>
          <button :disabled="!isFormValid()" class="btn btn-primary">{{ action }}</button>
@@ -38,7 +39,7 @@
       ],
       methods: {
          isFormValid() {
-            return this.draft.title && this.draft.description !== "";
+            return this.draft.title && this.draft.description;
          },
          save() {
             this.$emit('save', this.draft)
