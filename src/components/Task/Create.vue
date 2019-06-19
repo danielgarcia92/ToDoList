@@ -12,12 +12,13 @@
             },
             on: {
                save: (draft) => {
-                  let newTask = Store.createTask(draft);
-
-                  this.$router.push({
+                  // let newTask = Store.dispatch('createTask', draft);
+                  /*this.$router.push({
                      name: 'task.details',
                      params: {id: newTask.id}
-                  });
+                  });*/
+                  Store.dispatch('createTask', draft);
+                  this.$router.push({name: 'task'});
                }
             }
          });
