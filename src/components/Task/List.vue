@@ -35,7 +35,7 @@
       },
       methods: {
          deleteCompleted() {
-            Store.deleteCompletedTasks();
+            Store.dispatch('deleteCompletedTasks');
          }
       }
    }

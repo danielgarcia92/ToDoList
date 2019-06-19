@@ -6,17 +6,22 @@
       render(createElement) {
          return createElement(Form, {
             props: {
-               task: {},
                title: 'Nueva Tarea',
-               action: 'Crear Tarea'
+               action: 'Crear Tarea',
+               task: {
+                  title: '',
+                  description: ''
+               },
             },
             on: {
                save: (draft) => {
-                  let newTask = Store.createTask(draft);
-
-                  this.$router.push({
-                     name: 'task.details',
-                     params: {id: newTask.id}
+                  Store.dispatch('createTask', draft).then(newTask => {
+                     this.$router.push({
+                        name: 'task.details',
+                        params: {id: newTask.id}
+                     });
+                  }).catch(error => {
+                     alert(error)
                   });
                }
             }

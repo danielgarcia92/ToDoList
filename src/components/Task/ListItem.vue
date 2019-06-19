@@ -24,7 +24,7 @@
             this.$router.push(route)
          },
          toggleStatus() {
-            Store.toggleTask(this.task);
+            Store.dispatch('toggleTask', this.task);
          }
       },
       computed: {

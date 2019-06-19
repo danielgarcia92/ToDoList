@@ -5,13 +5,16 @@
 
       <div>
          <button @click="toggleTask" class="btn" :class="task.pending ? 'btn-default' : 'btn-primary'">
-            <app-icon img="ok"></app-icon> Completar
+            <app-icon img="ok"></app-icon>
+            Completar
          </button>
          <button @click="editTask" class="btn btn-default">
-            <app-icon img="edit"></app-icon> Editar
+            <app-icon img="edit"></app-icon>
+            Editar
          </button>
          <button @click="deleteTask" class="btn btn-default">
-            <app-icon img="trash"></app-icon> Eliminar
+            <app-icon img="trash"></app-icon>
+            Eliminar
          </button>
       </div>
    </div>
@@ -23,13 +26,13 @@
    export default {
       props: ['id'],
       computed: {
-        task() {
-           return Store.findTask(this.id)
-        }
+         task() {
+            return Store.getters.findTask(this.id)
+         }
       },
       methods: {
          toggleTask() {
-            Store.toggleTask(this.task)
+            Store.dispatch('toggleTask', this.task)
          },
          editTask() {
             this.$router.push({
@@ -38,7 +41,7 @@
             })
          },
          deleteTask() {
-            Store.deleteTask(this.id);
+            Store.dispatch('deleteTask', this.id);
 
             this.$router.replace({name: 'tasks'})
          }

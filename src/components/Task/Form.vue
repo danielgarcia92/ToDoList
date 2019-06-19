@@ -5,6 +5,7 @@
          <div class="form-group">
             <label for="title">Título</label>
             <input
+                    required
                     id="title"
                     type="text"
                     autocomplete="off"
@@ -24,7 +25,7 @@
                     v-model="draft.description"
             ></textarea>
          </div>
-         <button :disabled="!isFormValid()" class="btn btn-primary">{{ action }}</button>
+         <button class="btn btn-primary">{{ action }}</button>
          <button @click="$router.replace({ name: 'tasks' })" class="btn btn-link">Cancelar</button>
       </form>
    </div>
@@ -39,7 +40,7 @@
       ],
       methods: {
          isFormValid() {
-            return this.draft.title && this.draft.description;
+            return this.draft.title;
          },
          save() {
             this.$emit('save', this.draft)
