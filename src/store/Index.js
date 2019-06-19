@@ -9,18 +9,22 @@ export default new Vuex.Store({
       tasks
    },
    actions: {
-      createTask(context, { title, description }) {
-         console.log(title);
-         let newTask = {
-            id: context.state.tasks.length + 1,
-            title,
-            description,
-            pending: true
-         };
+      createTask(context, {title, description}) {
+         return new Promise((resolve, reject) => {
+            setTimeout(() => {
+               if (title === "") reject('Por favor escriba un título');
+               let newTask = {
+                  id: context.state.tasks.length + 1,
+                  title,
+                  description,
+                  pending: true
+               };
 
-         context.commit('createTask', newTask)
+               context.commit('createTask', newTask);
 
-         // return newTask; TODO: revisar!
+               resolve(newTask);
+            }, 2000)
+         });
       },
       deleteTask: (context, payload) => context.commit('deleteTask', payload),
       toggleTask: (context, payload) => context.commit('toggleTask', payload),
